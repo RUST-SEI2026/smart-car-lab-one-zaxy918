@@ -1,0 +1,36 @@
+name: Autograding Tests
+
+on:
+  - push
+  - workflow_dispatch
+
+permissions:
+  checks: write
+  contents: read
+  actions: read
+
+jobs:
+  autograding:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust (stable)
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cargo unit tests
+        id: cargo-tests
+        uses: github-education-resources/autograding-command-grader@v1
+        with:
+          test-name: "cargo test (workspace)"
+          command: cargo test
+          timeout: 30
+          max-score: 100
+
+      - name: Autograding Reporter
+        uses: github-education-resources/autograding-grading-reporter@v1
+        env:
+          CARGO-TESTS_RESULTS: "${{ steps.cargo-tests.outputs.result }}"
+        with:
+          runners: cargo-tests
