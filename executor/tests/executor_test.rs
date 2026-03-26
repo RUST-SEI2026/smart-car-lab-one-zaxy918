@@ -100,3 +100,15 @@ mod change_pose_tests {
         }
     }
 }
+
+mod batch_cmd_tests {
+
+    use super::*;
+
+    #[test]
+    fn ret_1_given_cmd_longer_than_1() {
+        let mut executor = Executor::with_pose(Pose::new(0, 0, 'N'));
+        executor.execute("MLMRMMMLLMRR");
+        assert_eq!(executor.query(), Pose::new(-1, 3, 'N'))
+    }
+}
