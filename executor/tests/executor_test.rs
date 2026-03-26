@@ -77,5 +77,12 @@ mod change_pose_tests {
             executor.execute("R");
             assert_eq!(executor.query(), Pose::new(0, 0, 'S'));
         }
+
+        #[test]
+        fn ret_1_given_cmd_r_facing_w() {
+            let mut executor = Executor::with_pose(Pose::new(0, 0, 'W'));
+            executor.execute("R");
+            assert_eq!(executor.query(), Pose::new(0, 0, 'N'));
+        }
     }
 }
