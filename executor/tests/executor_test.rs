@@ -91,5 +91,12 @@ mod change_pose_tests {
             executor.execute("R");
             assert_eq!(executor.query(), Pose::new(0, 0, 'E'));
         }
+
+        #[test]
+        fn ret_1_given_cmd_r_facing_s() {
+            let mut executor = Executor::with_pose(Pose::new(0, 0, 'S'));
+            executor.execute("R");
+            assert_eq!(executor.query(), Pose::new(0, 0, 'W'));
+        }
     }
 }
