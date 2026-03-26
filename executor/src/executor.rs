@@ -35,6 +35,7 @@ impl Executor {
             match cmd {
                 'M' => match self.pose.heading {
                     'E' => self.pose.x += 1,
+                    'S' => self.pose.y -= 1,
                     _ => (),
                 },
                 _ => (),
