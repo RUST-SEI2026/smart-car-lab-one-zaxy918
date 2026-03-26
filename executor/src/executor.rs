@@ -36,6 +36,7 @@ impl Executor {
                 'M' => match self.pose.heading {
                     'E' => self.pose.x += 1,
                     'S' => self.pose.y -= 1,
+                    'W' => self.pose.x -= 1,
                     _ => (),
                 },
                 _ => (),
