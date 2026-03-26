@@ -32,3 +32,18 @@ mod move_tests {
         assert_eq!(executor.query(), Pose::new(0, 1, 'N'));
     }
 }
+
+mod change_pose_tests {
+
+    use super::*;
+
+    mod turn_left_tests {
+        use super::*;
+        #[test]
+        fn ret_1_given_cmd_l_facing_e() {
+            let mut executor = Executor::with_pose(Pose::new(0, 0, 'E'));
+            executor.execute("L");
+            assert_eq!(executor.query(), Pose::new(0, 0, 'N'));
+        }
+    }
+}
