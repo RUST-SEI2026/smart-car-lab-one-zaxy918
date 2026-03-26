@@ -24,4 +24,11 @@ mod move_tests {
         executor.execute("M");
         assert_eq!(executor.query(), Pose::new(-1, 0, 'W'));
     }
+
+    #[test]
+    fn ret_1_given_cmd_m_facing_n() {
+        let mut executor = Executor::with_pose(Pose::new(0, 0, 'N'));
+        executor.execute("M");
+        assert_eq!(executor.query(), Pose::new(0, 1, 'N'));
+    }
 }
