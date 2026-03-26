@@ -30,7 +30,17 @@ impl Executor {
         Executor { pose }
     }
 
-    pub fn execute(&mut self, cmds: &str) {}
+    pub fn execute(&mut self, cmds: &str) {
+        for cmd in cmds.chars() {
+            match cmd {
+                'M' => match self.pose.heading {
+                    'E' => self.pose.x += 1,
+                    _ => (),
+                },
+                _ => (),
+            }
+        }
+    }
 
     pub fn query(&self) -> Pose {
         self.pose
